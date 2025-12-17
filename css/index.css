@@ -2,16 +2,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap');
 
 /* --- Variáveis --- */
+/* --- Variáveis (Modo Claro) --- */
 :root {
     --primary-color: #3f51b5;
     --secondary-color: #501f5f;
-    --text-color: #333;
     --bg-color: #f4f7f6;
     --card-bg: #ffffff;
-    --telegram-color: #00bfff;
+    --text-color: #333;
+    --text-secondary: #666;
+    --border-color: #ccc;
     --shadow-light: rgba(0, 0, 0, 0.1);
-    --shadow-medium: rgba(0, 0, 0, 0.2);
-    --primary-light: #5c6bc0; 
+    --telegram-color: #00bfff;
+    --genre-bg: #4907ff25;
+    --footer-bg: #222;
+    --footer-text: #ffffff;
+    --genre-text: #501f5f;
 }
 
 /* --- Reset e Estilos Gerais --- */
@@ -44,6 +49,66 @@ a:hover {
     display: none !important;
 }
 
+/* --- Variáveis (Modo Escuro) --- */
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #f0f0f0;
+    --text-secondary: #bbb;
+    --border-color: #444;
+    --shadow-light: rgba(0, 0, 0, 0.5);
+    --footer-bg: #000000;
+    --footer-text: #bb86fc;
+    --genre-bg: rgba(187, 134, 252, 0.2);
+    --genre-text: #bb86fc;
+}
+
+
+/* --- Ajustes de aplicação das variáveis --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+    /* Transição suave */
+}
+
+/* Onde houver cores fixas de texto/borda, use as variáveis abaixo: */
+.book-item,
+#contact-form-section,
+.result-item {
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 10px var(--shadow-light);
+}
+
+.book-info-compact .author,
+.book-description-short,
+.result-details p {
+    color: var(--text-secondary);
+}
+
+.form-group input,
+.form-group textarea,
+#genre-select,
+#search-input {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Estilo do Botão de Alternar (Coloque no Header) */
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.8em;
+}
+
 /* --- Header --- */
 header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -54,7 +119,7 @@ header {
 }
 
 header h1 {
-    font-family: 'Caveat', cursive; 
+    font-family: 'Caveat', cursive;
     font-size: 3.5em;
     letter-spacing: 1.5px;
     margin-bottom: 5px;
@@ -118,6 +183,7 @@ header p {
 #search-btn {
     background-color: var(--primary-color);
 }
+
 #search-btn:hover {
     background-color: #303f9f;
 }
@@ -224,7 +290,7 @@ header p {
 .book-info-compact {
     flex-grow: 1;
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     height: 100%;
 }
 
@@ -244,29 +310,33 @@ header p {
 
 .genre-tag {
     font-size: 0.8em;
-    color: var(--secondary-color);
-    background-color: #4907ff40;
-    padding: 3px 8px;
+    font-weight: bold;
+    /* Deixa o texto mais nítido */
+    color: var(--genre-text);
+    background-color: var(--genre-bg);
+    padding: 3px 10px;
     border-radius: 12px;
     display: inline-block;
     margin-bottom: 8px;
+    transition: all 0.3s ease;
+    /* Para a mudança de cor ser suave */
 }
 
 .book-description-short {
     display: block !important;
     margin-top: 5px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     font-size: 0.85em;
     color: #555;
     line-height: 1.4;
     text-align: justify;
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 /* Estilos do Botão Link (PDF) - Usa estilos comuns definidos acima */
 .pdf-link {
     display: block;
-    margin-top: auto; 
+    margin-top: auto;
     padding: 8px 15px;
     text-decoration: none;
     width: fit-content;
@@ -319,7 +389,8 @@ header p {
 #contact-form-section {
     width: 80%;
     max-width: 400px;
-    margin: 40px auto; /* Usando 40px para consistência com o container */
+    margin: 40px auto;
+    /* Usando 40px para consistência com o container */
     padding: 30px;
     background-color: var(--card-bg);
     border-radius: 10px;
@@ -356,22 +427,49 @@ header p {
 
 /* --- Rodapé --- */
 footer {
-    background-color: var(--text-color);
+    background-color: var(--footer-bg);
     color: white;
     text-align: center;
-    padding: 15px 0;
+    padding: 20px 0;
     margin-top: auto;
     font-size: 0.9em;
+    transition: background-color 0.3s; /* Suaviza a troca de cor */
 }
 
-.contact-info {
-    margin-top: 5px;
-    font-size: 1em;
+/* Estilo unificado para o botão flutuante de sobre */
+.sobre-btn {
+    position: fixed;
+    bottom: 20px;       /* Distância do fundo */
+    right: 20px;        /* Distância da direita */
+    width: 50px;        /* Largura fixa para ser redondo */
+    height: 50px;       /* Altura fixa para ser redondo */
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    
+    /* Centraliza o ícone ℹ️ dentro do círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 24px;
+    border-radius: 50%; /* Faz o botão ser um círculo perfeito */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10000;     /* Garante que fique acima do footer */
+    opacity: 0.7;
+    transition: all 0.3s ease;
 }
 
-.contact-info a {
-    color: var(--telegram-color);
-    font-weight: bold;
+.sobre-btn:hover {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg); /* Aumenta e gira levemente */
+    background-color: var(--secondary-color);
+}
+
+/* Garante visibilidade no Modo Escuro */
+body.dark-mode .sobre-btn {
+    background-color: var(--secondary-color);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
 }
 
 /* --- Responsividade (Ajustes para Celulares) --- */
@@ -401,7 +499,7 @@ footer {
         flex-direction: row;
         gap: 10px;
     }
-    
+
     #submit-btn {
         width: 80%;
     }

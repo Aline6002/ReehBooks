@@ -12,6 +12,7 @@
 
     <header>
         <h1>📖 ReehBooks - Indicações Literárias 📖</h1>
+        <button id="theme-toggle">🌙</button>
         <p>Sua próxima grande leitura espera por você.</p>
     </header>
 
@@ -42,34 +43,39 @@
 
         <section id="contact-form-section">
             <h2>Fale Conosco</h2>
-            
+
             <form id="contact-form">
                 <div class="form-group">
                     <label for="name">Seu Nome:</label>
                     <input type="text" id="name" name="name" required>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="message">Mensagem:</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                
+
                 <button type="button" id="submit-btn" onclick="sendMessage()">Enviar pelo Telegram</button>
             </form>
         </section>
 
     </main>
 
+     <!-- Ícone fixo de sobre -->
+    <a href="sobre.html" class="sobre-btn" title="Sobre o site">ℹ️</a> 
+    
     <footer>
         <p>&copy; 2025 ReehBooks. Todos os direitos reservados.</p>
     </footer>
+
+   
 
     <script>
         function sendMessage() {
             // É crucial que os IDs no seu HTML sejam 'name' e 'message'
             const nome = document.getElementById('name').value.trim();
             const mensagem = document.getElementById('message').value.trim();
-            
+
             const telegramUser = 'Reeh200'; // O seu username do Telegram
 
             // Validação
@@ -80,18 +86,40 @@
 
             // Construir a mensagem formatada para o Telegram
             const textoCompleto = `Novo Contato da Biblioteca:\n\nNome: ${nome}\n\nMensagem: ${mensagem}`;
-            
+
             // Codificar o texto para ser seguro na URL
             const encodedMessage = encodeURIComponent(textoCompleto);
 
             // Montar o link do Telegram (usando o username e o parâmetro 'text')
             const link = `https://t.me/${telegramUser}?text=${encodedMessage}`;
-            
+
             // Abrir o link em uma nova aba
             window.open(link, '_blank');
         }
     </script>
-    
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Verifica se o usuário já tinha uma preferência salva
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            // Salva a preferência e muda o texto do botão
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggle.textContent = '🌙';
+            }
+        });
+    </script>
     <script src="js/index.js"></script>
 </body>
 

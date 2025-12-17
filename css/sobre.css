@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Caveat:wght@600&display=swap');
+
+/* --- Variáveis (Mesmo padrão do Index) --- */
+:root {
+    --primary-color: #3f51b5;
+    --secondary-color: #501f5f;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #333;
+    --text-secondary: #666;
+    --shadow-light: rgba(0, 0, 0, 0.1);
+    --footer-bg: #222;
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #f0f0f0;
+    --text-secondary: #bbb;
+    --shadow-light: rgba(0, 0, 0, 0.5);
+    --footer-bg: #000000;
+}
+
+/* --- Reset e Base --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* --- Header (Estilo Desenhado) --- */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 3.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header p {
+    font-style: italic;
+    opacity: 0.9;
+}
+
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid white;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* --- Conteúdo Principal --- */
+.container {
+    flex: 1;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.about-content {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.about-card {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--shadow-light);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.about-card h2 {
+    font-family: 'Caveat', cursive;
+    color: var(--primary-color);
+    font-size: 2.8em;
+    margin-bottom: 15px;
+}
+
+.about-card p {
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+/* --- Grid de Diferenciais --- */
+.about-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.feature-item {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+}
+
+/* --- Call to Action e Botão --- */
+.about-cta {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 35px;
+    background-color: var(--primary-color);
+    color: white !important;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-back:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--footer-bg);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+/* --- Animação --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsividade --- */
+@media (max-width: 600px) {
+    header h1 { font-size: 2.5em; }
+    .about-card { padding: 25px; }
+}

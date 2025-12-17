@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre - Indicações Literárias</title>
+    <link rel="stylesheet" href="css/sobre.css">
+</head>
+<body>
+
+    <header>
+        <button id="theme-toggle">🌙</button>
+        <h1>📖 Sobre o Projeto 📖</h1>
+        <p>Conheça a história por trás da sua próxima leitura.</p>
+    </header>
+
+    <main class="container">
+        <section class="about-content">
+            <div class="about-card">
+                <h2>A Nossa Missão</h2>
+                <p>O <strong>Indicações Literárias</strong> nasceu da paixão por transformar a busca pelo próximo livro em uma experiência simples e prazerosa. Acreditamos que um bom livro tem o poder de mudar perspectivas, e nossa missão é facilitar o acesso a obras que marcaram gerações.</p>
+            </div>
+
+            <div class="about-features">
+                <div class="feature-item">
+                    <h3>📚 Curadoria Especial</h3>
+                    <p>Cada livro listado aqui foi selecionado pensando na qualidade da narrativa e no impacto da história.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🚀 Acesso Facilitado</h3>
+                    <p>Oferecemos links diretos para pastas e arquivos, permitindo que você comece sua leitura em poucos cliques.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🤝 Comunidade</h3>
+                    <p>Este não é apenas um repositório, mas um espaço aberto para troca. Você pode sugerir livros e tirar dúvidas diretamente via Telegram.</p>
+                </div>
+            </div>
+
+            <div class="about-cta">
+                <p>Gostou do projeto ou quer sugerir um livro que não encontrou aqui?</p>
+                <a href="index.html" class="btn-back">Voltar para a Biblioteca</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Biblioteca Pessoal. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggle.textContent = '☀️';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDark = body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.textContent = isDark ? '☀️' : '🌙';
+        });
+    </script>
+</body>
+</html>
